@@ -26,6 +26,11 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
+
+        if("localhost".equals(request.getServerName())){
+            return true;
+        }
+
         //추후 log개발시에 이곳에 넣을 것
         return jwtService.checkVerifyToken(request.getHeader("Authorization"));
     }

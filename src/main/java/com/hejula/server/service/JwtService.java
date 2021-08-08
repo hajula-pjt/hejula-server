@@ -32,9 +32,9 @@ public class JwtService {
 
         String token = Jwts.builder()
                 .setHeader(header)
-                .setIssuer("com.kakaopay.jyeon.investing")
+                .setIssuer("com.hejula.server")
                 .setExpiration(exp)
-                .setSubject("investing api token")
+                .setSubject("hejulaServer")
                 .signWith(SignatureAlgorithm.HS256, secretKey.getBytes())
                 .compact();
 

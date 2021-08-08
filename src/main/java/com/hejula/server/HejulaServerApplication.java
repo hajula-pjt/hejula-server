@@ -9,5 +9,4 @@ public class HejulaServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HejulaServerApplication.class, args);
 	}
-
 }

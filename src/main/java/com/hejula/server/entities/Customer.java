@@ -24,12 +24,11 @@ public class Customer {
   private String id;
 
   @Column(nullable = false)
-  private String passwrod;
+  private String password;
 
   @Column(nullable = false)
   private String birth;
 
-  @Column(nullable = false)
   private long age;
 
   @Column(nullable = false)
@@ -37,7 +36,5 @@ public class Customer {
 
   @Column(nullable = false)
   private String sex;
-
-  private String profilePath;
 
 }

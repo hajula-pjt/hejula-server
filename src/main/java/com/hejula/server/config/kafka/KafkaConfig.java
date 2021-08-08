@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
-import org.springframework.kafka.requestreply.ReplyingKafkaTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,11 +59,7 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
-    @Bean
-    public ReplyingKafkaTemplate<String, String, String> replyKafkaTemplate(ProducerFactory<String, String> pf,
-                                                                            ConcurrentMessageListenerContainer<String, String> repliesContainer) {
-        return new ReplyingKafkaTemplate<>(pf, repliesContainer);
-    }
+
 
     @Bean
     public ConcurrentMessageListenerContainer<String, String> repliesContainer(

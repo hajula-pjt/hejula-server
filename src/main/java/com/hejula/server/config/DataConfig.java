@@ -1,3 +1,4 @@
+/*
 package com.hejula.server.config;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -18,10 +19,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+*/
 /**
  * @author jooyeon
  * @since 2021.07.17
- */
+ *//*
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
@@ -82,7 +85,7 @@ public class DataConfig {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", MySQLDialect.class);
         properties.put("spring.jpa.properties.hibernate.use_sql_comments", true);
-        properties.put("spring.jpa.properties.hibernate.show_sql", true);
+        properties.put("spring.jpa.show_sql", true);
         properties.put("spring.jpa.properties.hibernate.format_sql", true);
 
         properties.put("hibernate.physical_naming_strategy", "org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy");
@@ -91,3 +94,4 @@ public class DataConfig {
         return properties;
     }
 }
+*/

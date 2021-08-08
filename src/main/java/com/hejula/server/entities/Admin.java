@@ -28,8 +28,6 @@ public class Admin {
   @Column(nullable = false)
   private String nickname;
 
-  private String profileImgPath;
-
   @Column(nullable = false)
   private long thisMonthVisitors;
 

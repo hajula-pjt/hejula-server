@@ -1,7 +1,11 @@
 package com.hejula.server.config;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hejula.server.dto.CommonResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaProducerException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,20 +20,31 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 @Slf4j
 public class ExceptionAdvice {
-/*
+
     @ExceptionHandler(Exception.class)
     protected CommonResponse defaultException(Exception e, HttpServletRequest request) throws JsonProcessingException {
+
+        log.error(e.getMessage());
 
         CommonResponse response = new CommonResponse<>();
         response.setCompleted(false);
         response.setMessage("요청이 실패하였습니다.");
         response.setErrorMessage(e.getMessage());
-
-        log.error(e.getMessage());
-        logsService.createLogData(request, LogLevel.DEBUG, e.getMessage());
-
         return response;
 
-    }*/
+    }
+
+    @ExceptionHandler(KafkaProducerException.class)
+    protected CommonResponse KafkaException(KafkaProducerException e, HttpServletRequest request) throws JsonProcessingException {
+        log.error(e.getMessage());
+
+        CommonResponse response = new CommonResponse<>();
+        response.setCompleted(false);
+        response.setMessage("요청이 실패하였습니다.");
+        response.setErrorMessage(e.getMessage());
+        return response;
+
+    }
+
 
 }

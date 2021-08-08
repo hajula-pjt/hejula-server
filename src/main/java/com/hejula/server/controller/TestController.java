@@ -1,21 +1,24 @@
+/*
 package com.hejula.server.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.hejula.server.entities.Accommodation;
+import com.hejula.server.service.KafkaProducerService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
-
 @RestController
+@RequestMapping("/test")
+@RequiredArgsConstructor
 public class TestController {
 
-        @ApiOperation(value = "This method is used to get the clients.")
-        @GetMapping(value="/test")
-        public List<String> getClients() {
-            return Arrays.asList("First Client", "Second Client");
-        }
+    private final KafkaProducerService kafkaProducerService;
+
+    @PostMapping("/publishTest")
+    public boolean testAccommodation(Accommodation accommodation){
+        return kafkaProducerService.test(accommodation);
+    }
 
 }
+*/

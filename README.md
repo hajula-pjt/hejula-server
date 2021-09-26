@@ -1,11 +1,9 @@
 
 ## Welcome to 숙박해주라 👋
-------
 본 작업은 FE 1명과 BE 1명이 진행한 사이드 프로젝트입니다. 에어비앤비 컨셉을 참고하여 사용자의 숙박 예약, 호스트의 숙박 관리를 위한 대시보드를 제공합니다. 
 <br><br>
 
 ## 😎 Contributor
-------
 BE : JooYeon
 <a href="https://github.com/JooYeonPark" target="_blank"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
 <a href="mailto:jyeon0117@naver.com" target="_blank"><img src="https://img.shields.io/badge/jyeon0117@naver.com-03C75A?style=flat-square&logo=Naver&logoColor=white"/></a>
@@ -18,15 +16,13 @@ FE : heaeun
 <br><br>
 
 ## ✨ Screen Shot / Demo
------
 
 
 <br><Br>
 
 ## 🍑Detail
-------
 ### 화면 정의서
-- [화면정의서 pdf]()
+- [화면정의서](https://github.com/hajula-pjt/hejula-server/files/7231114/_._v1.0.pdf)
 ### DB 설계
 - [논리, 물리 ERD, 테이블 정의서](https://leeward-sandalwood-90d.notion.site/DB-919ccfce3eb1490fa35c82a45080e8fd)
 ### 기능 정의
@@ -54,7 +50,6 @@ FE : heaeun
 <br><br>
 
 ## 💻 Tech/Framework used
------
 ### BE
 - Spring Boot
 - Spring Batch : [Batch GitHub](https://github.com/hajula-pjt/hejula-server-batch) 

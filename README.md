@@ -15,8 +15,31 @@ FE : heaeun
 
 <br><br>
 
-## ✨ Screen Shot / Demo
+## ✨ Demo
+### 유저 페이지
 
+#### 로그인
+https://user-images.githubusercontent.com/53102889/134802423-387958b5-c3e3-45d1-847d-c7d5c9865d53.mov
+
+#### 숙소 검색
+https://user-images.githubusercontent.com/53102889/134802426-2d9df164-04fb-4f03-bed1-1bcbde32a910.mov
+
+#### 숙소 검색 결과
+https://user-images.githubusercontent.com/53102889/134802429-8ab7a092-befd-4f05-a8f3-3e129a5c5775.mov
+
+#### 숙소 상세
+https://user-images.githubusercontent.com/53102889/134802430-1b390a7d-a421-49e3-b976-e4764e60fe9d.mov
+
+#### 숙소 예약
+https://user-images.githubusercontent.com/53102889/134802431-54de00e1-3f15-49db-aced-c1fe124e1f63.mov
+
+### 관리자 페이지
+
+#### 관리자 로그인
+https://user-images.githubusercontent.com/53102889/134802467-673a6bf3-c6cc-424a-9274-e0941ee44ff3.mov
+
+#### 관리자 홈
+https://user-images.githubusercontent.com/53102889/134802473-348762b7-4693-4d34-889a-61effe932894.mov
 
 <br><Br>
 

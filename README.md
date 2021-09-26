@@ -1,6 +1,10 @@
 
 ## Welcome to 숙박해주라 👋
 본 작업은 FE 1명과 BE 1명이 진행한 사이드 프로젝트입니다. 에어비앤비 컨셉을 참고하여 사용자의 숙박 예약, 호스트의 숙박 관리를 위한 대시보드를 제공합니다. 
+<br> 
+
+## 👉🏻 배포링크
+[사이트 링크](http://49.247.213.4:3000/)
 <br><br>
 
 ## 😎 Contributor
@@ -22,10 +26,10 @@ FE : heaeun
 https://user-images.githubusercontent.com/53102889/134802423-387958b5-c3e3-45d1-847d-c7d5c9865d53.mov
 
 #### 숙소 검색
-https://user-images.githubusercontent.com/53102889/134802426-2d9df164-04fb-4f03-bed1-1bcbde32a910.mov
+https://user-images.githubusercontent.com/53102889/134802429-8ab7a092-befd-4f05-a8f3-3e129a5c5775.mov
 
 #### 숙소 검색 결과
-https://user-images.githubusercontent.com/53102889/134802429-8ab7a092-befd-4f05-a8f3-3e129a5c5775.mov
+https://user-images.githubusercontent.com/53102889/134802426-2d9df164-04fb-4f03-bed1-1bcbde32a910.mov
 
 #### 숙소 상세
 https://user-images.githubusercontent.com/53102889/134802430-1b390a7d-a421-49e3-b976-e4764e60fe9d.mov

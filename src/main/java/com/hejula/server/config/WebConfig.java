@@ -26,8 +26,10 @@ public class WebConfig implements WebMvcConfigurer {
                     "/test/**",
                     "/user/**", //회원가입, 로그인
                     "/accommodation/**",
+                    "/reservation",
                     "/images/**",
                     "/token/**",
+                    "/admin/**",
                     "/v2/api-docs",
                     "/swagger**",
                     "/swagger-resources/**",
@@ -41,11 +43,12 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
 //                .allowedOrigins("localhost", "127.0.0.1", "127.0.0.1:3000", "http://localhost:3000", "http://localhost",
-//                        "127.0.0.1:8080", "http://localhost:8080")
-                .allowedOrigins("*")
+//                        "127.0.0.1:8080", "http://localhost:8080", "http://49.247.213.4:3000")
 //                .allowedHeaders(HttpHeaders.CONTENT_TYPE,"Set-Cookie",HttpHeaders.ACCEPT,HttpHeaders.USER_AGENT,HttpHeaders.REFERER,HttpHeaders.AUTHORIZATION)
-//                .allowCredentials(true)
-        .maxAge(3600 * 24);//1일
+//                .allowCredentials(true) //true에서 변경
+//                .maxAge(3600 * 24);//1일
+
+                .allowedOrigins("*"); //TEST용
          }
 
     @Override

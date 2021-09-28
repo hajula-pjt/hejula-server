@@ -1,7 +1,6 @@
 package com.hejula.server.service;
 
 import com.hejula.server.dto.ScheduleDto;
-import com.hejula.server.entities.Schedule;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -20,33 +19,59 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 @Slf4j
 public class KafkaProducerService {
 
-    @Value("${consumer.topic}")
-    private String topic;
+    @Value("${consumer.reservation.topic}")
+    private String RESERVATION_TOPIC;
 
-    private final KafkaTemplate<String, Schedule> template;
+    @Value("${consumer.view.topic}")
+    private String VIEW_TOPIC;
+
+    private final AccommodationService accommodationService;
+    private final UserService userService;
+    private final KafkaTemplate<String, ScheduleDto> scheduleTemplate;
+    private final KafkaTemplate<String, String> commonTemplate;
 
     //Exception.class에 대한 모든 걸 retry
     //최대횟수 10
     //보내는 간격 사이 delay 1초
    // @Retryable(value=Exception.class, maxAttempts = 10, backoff = @Backoff(delayExpression = "1000"))
-    public Boolean reservation(ScheduleDto scheduleDto){
-        Schedule schedule = scheduleDto.convertToSchedule();
-        ListenableFuture<SendResult<String, Schedule>> future = template.send(topic, schedule);
-        future.addCallback(new ListenableFutureCallback<SendResult<String, Schedule>>() {
+    public void reservation(ScheduleDto scheduleDto){
+        log.info("{}", scheduleDto);
+
+        ListenableFuture<SendResult<String, ScheduleDto>> future = scheduleTemplate.send(RESERVATION_TOPIC, scheduleDto);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, ScheduleDto>>() {
             @Override
             public void onFailure(Throwable throwable) {
-                log.info(schedule.getCustomer().getCustomerSeq() + "'s " + schedule.getAccommodation().getAccommodationSeq()+" request sent failed");
+                log.info(scheduleDto.getCustomerSeq() + "'s " + scheduleDto.getAccommodationSeq()+" request sent failed");
                 log.error(throwable.getMessage());
                 ProducerRecord<?, ?> producerRecord = ((KafkaProducerException) throwable).getFailedProducerRecord();
                 throw new KafkaProducerException(producerRecord, throwable.getMessage(), throwable);
             }
 
             @Override
-            public void onSuccess(SendResult<String, Schedule> stringScheduleSendResult) {
-                log.info(schedule.getCustomer().getCustomerSeq() + "'s " + schedule.getAccommodation().getAccommodationSeq()+" request sent success");
+            public void onSuccess(SendResult<String, ScheduleDto> stringScheduleDtoSendResult) {
+                log.info(scheduleDto.getCustomerSeq() + "'s " + scheduleDto.getAccommodationSeq()+" request sent success");
             }
         });
-
-        return true;
     }
- }
+
+    //view 수  증가
+    public void setViewPlus(String accommodationSeq) {
+        log.info("into setViewPlus, seq = {}", accommodationSeq);
+
+        ListenableFuture<SendResult<String, String>> future = commonTemplate.send(VIEW_TOPIC, accommodationSeq);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+            @Override
+            public void onFailure(Throwable throwable) {
+                log.info(accommodationSeq+ " request sent failed");
+                log.error(throwable.getMessage());
+                ProducerRecord<?, ?> producerRecord = ((KafkaProducerException) throwable).getFailedProducerRecord();
+                throw new KafkaProducerException(producerRecord, throwable.getMessage(), throwable);
+            }
+
+            @Override
+            public void onSuccess(SendResult<String, String> stringStringSendResult) {
+                log.info(accommodationSeq+ " request sent success");
+            }
+        });
+    }
+}

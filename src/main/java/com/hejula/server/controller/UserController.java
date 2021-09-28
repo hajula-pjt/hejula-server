@@ -1,6 +1,7 @@
 package com.hejula.server.controller;
 
 import com.hejula.server.dto.CommonResponse;
+import com.hejula.server.dto.UserDto;
 import com.hejula.server.entities.Customer;
 import com.hejula.server.service.JwtService;
 import com.hejula.server.service.UserService;
@@ -10,16 +11,14 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Api(tags={"고객, 관리자 통합 Api"})
+@Api(tags={"고객 페이지 Api"})
 @RequiredArgsConstructor
 @RestController
 @Slf4j
@@ -79,25 +78,28 @@ public class UserController {
         return res;
     }
 
-    @GetMapping("/signIn")
+    @PostMapping("/signIn")
     @ApiOperation(value="로그인", notes="로그인 API")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "사용자 ID", required = true, dataType = "String", defaultValue = "jooypark"),
-            @ApiImplicitParam(name = "password", value = "비밀번호", required = true, dataType = "String", defaultValue = "jooypark!a"),
     })
-    public CommonResponse<Boolean> signIn(Customer customer, HttpServletResponse response) {
-        log.info("into signIn()");
+    public CommonResponse<UserDto> signIn(@RequestBody Customer customer, HttpServletResponse response, HttpServletRequest request) {
+        CommonResponse<UserDto> res = new CommonResponse<>();
+        UserDto user = new UserDto();
 
-        CommonResponse<Boolean> res = new CommonResponse<>();
-        boolean flag = userService.getCustomer(customer) == null ? false : true;
-
-        //토큰 발급하여 쿠키에 set
-        if(flag){
-            String token = jwtService.createToken(customer.getId());
-            response.setHeader("Set-Cookie","Authorization=" + token + ";path=/;HttpOnly");
-        }
+        Customer resultCustomer = userService.getCustomer(customer) ;
+        boolean flag = resultCustomer == null ? false : true;
         res.setCompleted(flag);
-        res.setResultValue(flag);
+
+        if(flag) {
+            user.setUserId(resultCustomer.getId());
+            user.setUserSeq(resultCustomer.getCustomerSeq());
+            user.setNickname(resultCustomer.getNickname());
+
+            String token = jwtService.createToken(customer.getId());
+            user.setToken(token);
+
+            res.setResultValue(user);
+        }
 
         return res;
     }

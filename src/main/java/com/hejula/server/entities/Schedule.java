@@ -1,15 +1,17 @@
 package com.hejula.server.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Data
-@ToString(exclude = "accommodation")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -21,7 +23,7 @@ public class Schedule {
   @GeneratedValue(strategy =  GenerationType.IDENTITY)
   private long scheduleSeq;
 
-  @JsonManagedReference //serialize에 포함됨
+  @JsonBackReference(value = "accAndSchReference") //serialize에서 제외됨
   @ManyToOne(targetEntity = Accommodation.class)
   @JoinColumn(name = "accommodation_seq")
   private Accommodation accommodation;
@@ -64,9 +66,9 @@ public class Schedule {
   setAccommodation 대신 changeAccommodation을 사용할
   setAccommodation로 쓸 경우 기존 setter, getter와 헛갈릴 수 있기 때문에 이름을 바꿈
   */
-  public void changeAccommodation(Accommodation accommodation){
+ /* public void changeAccommodation(Accommodation accommodation){
     this.accommodation = accommodation;
     accommodation.getSchedules().add(this);
-  }
+  }*/
 
 }

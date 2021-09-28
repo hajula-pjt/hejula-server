@@ -50,7 +50,7 @@ public class FileUtil {
             }
 
             //3. 파일명 변경
-            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateStr = sdf.format(new Date());
             String path = SAVE_PATH + dateStr + "." + extension;
 

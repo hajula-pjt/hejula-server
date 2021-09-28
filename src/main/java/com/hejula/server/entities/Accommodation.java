@@ -1,23 +1,28 @@
 package com.hejula.server.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Data
-@ToString(exclude = "schedules")
+@JsonIgnoreProperties({"schedules", "prices"}) //@JsonIgnore안먹어서 이거로 바꿈
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "accommodation")
-public class Accommodation {
+public class Accommodation implements Serializable {
 
   @Id
   @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -31,13 +36,17 @@ public class Accommodation {
   @JoinColumn(name = "gu_seq")
   private Gu gu;
 
-  @JsonBackReference //serialize에서 제외됨
+  @JsonManagedReference(value = "accAndSchReference")  //serialize에 포함됨
   @OneToMany(mappedBy = "accommodation") //역방향 설정
   private List<Schedule> schedules = new ArrayList<>();
 
-  @JsonBackReference //serialize에서 제외됨
+  @JsonManagedReference(value = "accAndFileReference") //serialize에 포함됨
   @OneToMany(mappedBy = "accommodation") //역방향 설정
   private List<FileEntity> files = new ArrayList<>();
+
+  @JsonManagedReference(value = "accAndPriceReference")  //serialize에 포함됨
+  @OneToMany(mappedBy = "accommodation") //역방향 설정
+  private List<Price> prices = new ArrayList<>();
 
   private String name;
 
@@ -80,7 +89,9 @@ public class Accommodation {
   @Column(nullable = false)
   private long yCoordinate;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd HH:mm:ss", timezone = "Asia/Seoul")
+  private double yearAveragePrice; //연 평균 가격
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
   private Date registDate;
 
 }

@@ -11,6 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
-
-
+    public Statistics findByAccommodation_AccommodationSeq(Long accommodationSeq);
 }

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
  * @since 2021.07.17
  */
 @Repository
-public interface AdminRepository extends JpaRepository<Admin, Long> {
+public interface AdminRepository extends JpaRepository<Admin, Long>, QueryDslCustom {
 
+    public Admin getById(String adminId);
 
 }

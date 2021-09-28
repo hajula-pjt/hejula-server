@@ -33,7 +33,7 @@ public class AccommodationService {
         return list;
     }
 
-   public Page<Accommodation> getAccommodationList(AccommodationSearchDto asDto){
+   public Page<Accommodation> getAccommodationList(AccommodationSearchDto asDto) throws IllegalAccessException {
 //   public List<Accommodation> getAccommodationList(String gu, Date checkIn, Date checkOut, int people, int page, int rows){
         return accommodationRepository.getAccommodationByGuAndSchedule(asDto, PageRequest.of(asDto.getPage(), asDto.getRows()));
     }
@@ -42,4 +42,20 @@ public class AccommodationService {
         return accommodationRepository.findById(accommodationSeq).orElseThrow(IllegalAccessError::new);
     }
 
+    public void setView(long accommodationSeq) {
+        Accommodation accommodation = accommodationRepository.findById(accommodationSeq).orElseThrow(IllegalArgumentException::new);
+        log.info("in setView accommodation : {}", accommodation.getName());
+        log.info("view : {}", accommodation.getViews());
+
+        long view = accommodation.getViews() + 1;
+        accommodation.setViews(view);
+        accommodationRepository.save(accommodation);
+    }
+
+    public void addVisitors(long accommodationSeq) {
+        Accommodation accommodation = accommodationRepository.getById(new Long(accommodationSeq));
+        long visitors = accommodation.getVisitors() + 1;
+        accommodation.setVisitors(visitors);
+        accommodationRepository.save(accommodation);
+    }
 }

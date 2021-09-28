@@ -7,6 +7,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * 숙소 검색을 위한 DTO
+ *
+ * @author jooyeon
+ * @since 2021.08.15
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,5 +32,7 @@ public class AccommodationSearchDto {
     private Integer page;
 
     private Integer rows;
+
+    private String searchType; // 타입 //추후 enum으로 변경?
 
 }

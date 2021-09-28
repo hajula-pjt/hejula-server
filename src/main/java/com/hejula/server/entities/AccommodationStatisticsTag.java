@@ -19,10 +19,12 @@ public class AccommodationStatisticsTag {
   @GeneratedValue(strategy =  GenerationType.IDENTITY)
   private long statisticsTagSeq;
 
-  @ManyToOne(targetEntity = Statistics.class)
-  @JoinColumn(name = "statistics_seq")
-  private long statisticsSeq;
+  @ManyToOne(targetEntity = Accommodation.class)
+  @JoinColumn(name = "accommodation_seq")
+  private long accommodationSeq;
 
   private String name;
+
+  private int score;
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * @since 2021.07.17
  */
 @Repository
-public interface PriceRepository extends JpaRepository<Price, Long> {
+public interface PriceRepository extends JpaRepository<Price, Long>, QueryDslCustom {
 
 
 }

@@ -23,11 +23,13 @@ public class Statistics {
 
   @ManyToOne(targetEntity = Admin.class)
   @JoinColumn(name = "admin_seq")
-  private long adminSeq;
+  private Admin admin;
 
   @ManyToOne(targetEntity = Accommodation.class)
   @JoinColumn(name = "accommodation_seq")
-  private long accommodationSeq;
+  private Accommodation accommodation;
+
+  private String year;
 
   @ColumnDefault(value = "0")
   private long teens;

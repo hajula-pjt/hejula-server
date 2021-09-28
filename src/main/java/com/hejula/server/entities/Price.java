@@ -1,5 +1,6 @@
 package com.hejula.server.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,12 +22,10 @@ public class Price {
   @GeneratedValue(strategy =  GenerationType.IDENTITY)
   private long priceSeq;
 
-  @ManyToOne(targetEntity = Schedule.class)
-  @JoinColumn(name = "schedule_seq")
-  private long scheduleSeq;
-
-  @Column(nullable = false)
-  private long accommodationSeq;
+  @JsonBackReference(value = "accAndPriceReference")
+  @ManyToOne(targetEntity = Accommodation.class)
+  @JoinColumn(name = "accommodation_seq")
+  private Accommodation accommodation;
 
   @Column(nullable = false)
   private long month;
@@ -35,10 +34,10 @@ public class Price {
   private long day;
 
   @Column(nullable = false)
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd", timezone = "Asia/Seoul")
-  private Date date;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+  private Date fullDay;
 
   @Column(nullable = false)
-  private long price;
+  private double price;
 
 }

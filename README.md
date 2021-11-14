@@ -19,6 +19,25 @@ FE : heaeun
 
 <br><br>
 
+## 💻 Tech/Framework used
+### BE
+- Spring Boot
+- Spring Batch : [Batch GitHub](https://github.com/hajula-pjt/hejula-server-batch) 
+- MySQL
+  - JPA, QueryDSL 
+- Apache Kafka
+- Zookeeper
+- Docker
+
+### FE
+- Javscript
+- Html5, CSS3
+- Typescrip
+- React
+- Emotion
+- NextJs
+<br><br>
+
 ## ✨ Demo
 ### 유저 페이지
 
@@ -74,23 +93,4 @@ https://user-images.githubusercontent.com/53102889/134802473-348762b7-4693-4d34-
 - [Swagger](http://49.247.213.4:8080/swagger-ui.html#/)
 
 
-<br><br>
-
-## 💻 Tech/Framework used
-### BE
-- Spring Boot
-- Spring Batch : [Batch GitHub](https://github.com/hajula-pjt/hejula-server-batch) 
-- MySQL
-  - JPA, QueryDSL 
-- Apache Kafka
-- Zookeeper
-- Docker
-
-### FE
-- Javscript
-- Html5, CSS3
-- Typescrip
-- React
-- Emotion
-- NextJs
 <br><br>
